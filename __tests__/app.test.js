@@ -44,3 +44,18 @@ describe('Lab-33-Fullstack-be routes', () => {
       });
   });
 });
+
+it('gets a muppet by id', async() => {
+  const expected = 
+    {
+      id: '1',
+      name: 'Animal', 
+      performer: 'Frank Oz', 
+      image: 'https://static.wikia.nocookie.net/muppet/images/7/78/AN_004.jpg/revision/latest?cb=20111004221237'
+    };
+
+  const data = await request(app)
+    .get('/api/v1/muppets/1');
+
+  expect(data.body).toEqual(expected);
+});
