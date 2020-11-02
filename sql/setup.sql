@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS muppets;
+
+CREATE TABLE muppets (
+  id BIGINT GENERATED ALWAYS AS IDENTITY,
+  name TEXT NOT NULL,
+  performer TEXT,
+  image TEXT
+);
