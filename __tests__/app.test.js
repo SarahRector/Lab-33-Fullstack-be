@@ -59,3 +59,27 @@ it('gets a muppet by id', async() => {
 
   expect(data.body).toEqual(expected);
 });
+
+it('updates a muppet by id', async() => {
+  const muppet = await Muppet.insert({
+    name: 'Kermit',
+    performer: 'Jim Henson',
+    image: 'test.png'
+  });
+
+  return request(app)
+    .put(`/api/v1/muppets/${muppet.id}`)
+    .send({
+      name: 'Gonzo',
+      performer: 'Frank Oz',
+      image: 'test2.png'
+    })
+    .then(res => {
+      expect(res.body).toEqual({
+        id: expect.any(String),
+        name: 'Gonzo',
+        performer: 'Frank Oz',
+        image: 'test2.png'
+      });
+    });
+});
