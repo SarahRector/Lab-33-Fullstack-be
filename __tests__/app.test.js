@@ -83,3 +83,15 @@ it('updates a muppet by id', async() => {
       });
     });
 });
+
+it('deletes a muppet by id', async() => {
+  const expectation = {};
+
+  await request(app)
+    .delete('/api/v1/muppets/1');
+    
+  const data = await request(app)
+    .get('/api/v1/muppets/1');
+
+  expect(data.body).toEqual(expectation);
+});
